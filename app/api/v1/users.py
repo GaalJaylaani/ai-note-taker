@@ -16,9 +16,12 @@ def update_user(user_id: int, user_update: UserUpdate, db: Session = Depends(get
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    for var, value in vars(user_update).items():
-        if value is not None:
-            setattr(user, var, value)
+    
+    data = user_update.dict(exclude_unset=True)
+    if "password" in data: 
+        user.password_hash = hash_password(data.pop("password"))
+    for field, value in data.items():
+            setattr(user, field, value)
     db.commit()
     db.refresh(user)
     return user
