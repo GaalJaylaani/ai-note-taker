@@ -9,7 +9,7 @@ router = APIRouter(prefix="/notes", tags=["notes"])
 @router.post("/", response_model=NoteRead)
 
 def create_note(payload: NoteCreate, db: Session = Depends(get_db)):
-    note = Note(**payload.dict())
+    note = note = Note(owner_id=payload.owner_id, **payload.dict())
     db.add(note)
     db.commit()
     db.refresh(note)
@@ -17,7 +17,7 @@ def create_note(payload: NoteCreate, db: Session = Depends(get_db)):
 
 @router.get("/", response_model=List[NoteRead])
 def read_notes(db: Session = Depends(get_db)):
-    notes = db.query(Note).all()
+    notes = db.query(Note).filter(Note.owner == current_user.id).all()
     return notes
 
 @router.get("/{note_id}", response_model=NoteRead)
