@@ -17,3 +17,5 @@ class NoteRead(NoteBase):
 
     class Config:
         from_attributes = True
+
+
