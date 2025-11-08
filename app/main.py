@@ -7,6 +7,8 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="AI Note Taker")
 
 app.include_router(notes.router)
+app.include_router(user.router)
+app.include_router(auth.router)
 
 @app.get("/health")
 def health_check():
