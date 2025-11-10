@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from typing import Optional
 
 class UserCreate(BaseModel):
     email: str
@@ -9,7 +9,7 @@ class UserOut(BaseModel):
     id: int
     email: str
 
-    lass Config:
+    class Config:
         from_attributes = True
 
 
@@ -19,8 +19,8 @@ class UserRead(BaseModel):
 
 
 class UserUpdate(BaseModel):
-    email: str | None = None
-    password: str | None = None
+    email: Optional[str] = None
+    password: Optional[str] = None
 
 class Token(BaseModel):
     access_token: str
