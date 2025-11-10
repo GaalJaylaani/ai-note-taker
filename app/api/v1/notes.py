@@ -17,7 +17,7 @@ def create_note(payload: NoteCreate, db: Session = Depends(get_db)):
 
 @router.get("/", response_model=List[NoteRead])
 def read_notes(db: Session = Depends(get_db)):
-    notes = db.query(Note).filter(Note.owner == current_user.id).all()
+    notes = db.query(Note).filter(Note.owner == current_user).all()
     return notes
 
 @router.get("/{note_id}", response_model=NoteRead)
