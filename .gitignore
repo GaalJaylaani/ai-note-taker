@@ -14,3 +14,13 @@ __pycache__/
 .DS_Store
 .vscode/
 .idea/
+ notes.db
+
+client/node_modules/
+client/dist/
+client/.vite/
+client/.parcel-cache/
+client/.next/
+client/.DS_Store
+
+.DS_Store
