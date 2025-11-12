@@ -14,7 +14,7 @@ __pycache__/
 .DS_Store
 .vscode/
 .idea/
- notes.db
+notes.db
 
 client/node_modules/
 client/dist/
