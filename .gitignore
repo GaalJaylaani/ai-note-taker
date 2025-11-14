@@ -24,3 +24,6 @@ client/.next/
 client/.DS_Store
 
 .DS_Store
+
+client/package-lock.json
+client/package.json
